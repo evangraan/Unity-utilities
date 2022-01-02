@@ -38,7 +38,7 @@ public static class Finder
         return GameObject.Find(name);
     }
 
-    public static GameObject FindGameObjectByName(string name)
+    public static GameObject FindGameObjectByName(string name, bool reportErrorIfNotFound = true)
     {
         foreach (GameObject o in Resources.FindObjectsOfTypeAll<GameObject>())
         {
@@ -48,6 +48,10 @@ public static class Finder
             }
         }
 
+        if (reportErrorIfNotFound)
+        {
+           Debug.LogError("[" + name + "] not found in object hierarchy!");
+        }
         return null;
     }
 }
