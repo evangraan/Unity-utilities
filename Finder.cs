@@ -33,7 +33,21 @@ public static class Finder
         return null;
     }
 
-    public static GameObject FindActiveComponentByName(string name)
+   public static GameObject FindComponentInParentByName(GameObject child, string name)
+   {
+      List<Component> components = new List<Component>();
+      child.transform.parent.GetComponentsInChildren(true, components);
+      foreach (Component c in components)
+      {
+         if (c.name.Equals(name))
+         {
+            return c.gameObject;
+         }
+      }
+      return null;
+   }
+
+   public static GameObject FindActiveComponentByName(string name)
     {
         return GameObject.Find(name);
     }
